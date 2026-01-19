@@ -15,6 +15,13 @@ export default function PostDetailClient({ postId }: { postId: string }) {
 
   useEffect(() => {
     const fetchPost = async () => {
+      // 더미 ID인 경우 처리하지 않음
+      if (postId === '00000000-0000-0000-0000-000000000000') {
+        setError('게시글을 찾을 수 없습니다.')
+        setLoading(false)
+        return
+      }
+
       try {
         // 게시글 조회
         const { data: postData, error: postError } = await supabase

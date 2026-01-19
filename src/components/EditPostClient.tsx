@@ -15,6 +15,13 @@ export default function EditPostClient({ postId }: { postId: string }) {
 
   useEffect(() => {
     const fetchPost = async () => {
+      // 더미 ID인 경우 처리하지 않음
+      if (postId === '00000000-0000-0000-0000-000000000000') {
+        setError('게시글을 찾을 수 없습니다.')
+        setLoadingPost(false)
+        return
+      }
+
       const {
         data: { user },
       } = await supabase.auth.getUser()
