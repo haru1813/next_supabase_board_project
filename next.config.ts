@@ -5,6 +5,8 @@ const nextConfig: NextConfig = {
   images: {
     unoptimized: true,
   },
+  // Netlify를 위한 설정
+  trailingSlash: false,
 };
 
 export default nextConfig;

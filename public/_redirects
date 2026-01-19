@@ -1,0 +1,5 @@
+# Netlify redirects for dynamic routes
+# 모든 동적 라우트를 index.html로 리다이렉트하여 클라이언트 사이드 라우팅 처리
+/posts/*  /index.html  200
+/posts/*/edit  /index.html  200
+

@@ -6,8 +6,8 @@ export async function generateStaticParams() {
   const supabaseAnonKey = process.env.NEXT_PUBLIC_SUPABASE_ANON_KEY
 
   if (!supabaseUrl || !supabaseAnonKey) {
-    // 환경 변수가 없으면 빈 배열 반환 (개발 환경)
-    return []
+    // 환경 변수가 없으면 더미 값 반환 (빌드 오류 방지)
+    return [{ id: '00000000-0000-0000-0000-000000000000' }]
   }
 
   try {
@@ -21,9 +21,10 @@ export async function generateStaticParams() {
       .select('id')
       .limit(1000) // 최대 1000개까지 (필요시 조정)
 
-    if (error || !posts) {
+    if (error || !posts || posts.length === 0) {
       console.warn('Failed to fetch posts for static generation:', error)
-      return []
+      // 빈 배열 대신 더미 값 반환 (output: export에서는 빈 배열 불가)
+      return [{ id: '00000000-0000-0000-0000-000000000000' }]
     }
 
     // { id: 'uuid' } 형태로 반환
@@ -32,7 +33,8 @@ export async function generateStaticParams() {
     }))
   } catch (error) {
     console.warn('Error in generateStaticParams:', error)
-    return []
+    // 빈 배열 대신 더미 값 반환 (output: export에서는 빈 배열 불가)
+    return [{ id: '00000000-0000-0000-0000-000000000000' }]
   }
 }
 
