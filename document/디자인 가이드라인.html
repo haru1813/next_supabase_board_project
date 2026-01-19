@@ -1,0 +1,377 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>디자인 가이드라인 - Next.js Supabase 게시판 프로젝트</title>
+    <style>
+        body {
+            font-family: 'Malgun Gothic', sans-serif;
+            line-height: 1.6;
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 20px;
+            background-color: #f5f5f5;
+        }
+        .container {
+            background: white;
+            padding: 30px;
+            border-radius: 8px;
+            box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+        }
+        h1 {
+            color: #2563eb;
+            border-bottom: 3px solid #2563eb;
+            padding-bottom: 10px;
+        }
+        h2 {
+            color: #1e40af;
+            margin-top: 30px;
+            border-left: 4px solid #2563eb;
+            padding-left: 15px;
+        }
+        h3 {
+            color: #3b82f6;
+            margin-top: 20px;
+        }
+        .color-box {
+            display: inline-block;
+            width: 100px;
+            height: 100px;
+            border-radius: 8px;
+            margin: 10px;
+            border: 2px solid #ddd;
+            vertical-align: top;
+        }
+        .color-info {
+            display: inline-block;
+            margin-left: 20px;
+            vertical-align: top;
+        }
+        .typography-sample {
+            padding: 15px;
+            background: #f9fafb;
+            border-radius: 8px;
+            margin: 10px 0;
+        }
+        .component-box {
+            background: #f9fafb;
+            padding: 20px;
+            border-radius: 8px;
+            margin: 20px 0;
+            border-left: 4px solid #2563eb;
+        }
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin: 20px 0;
+        }
+        th, td {
+            border: 1px solid #ddd;
+            padding: 12px;
+            text-align: left;
+        }
+        th {
+            background-color: #2563eb;
+            color: white;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>디자인 가이드라인</h1>
+        <p><strong>프로젝트명:</strong> Next.js Supabase 게시판 프로젝트</p>
+        <p><strong>작성일:</strong> 2026-01-20</p>
+        <p><strong>디자인 시스템:</strong> Tailwind CSS 기반</p>
+
+        <h2>1. 컬러 팔레트</h2>
+
+        <h3>1.1 Primary Colors</h3>
+        <div>
+            <div class="color-box" style="background-color: #2563eb;"></div>
+            <div class="color-info">
+                <strong>Primary Blue</strong><br>
+                Hex: #2563eb<br>
+                RGB: 37, 99, 235<br>
+                용도: 주요 버튼, 링크, 강조 요소
+            </div>
+        </div>
+
+        <div>
+            <div class="color-box" style="background-color: #1e40af;"></div>
+            <div class="color-info">
+                <strong>Primary Dark</strong><br>
+                Hex: #1e40af<br>
+                RGB: 30, 64, 175<br>
+                용도: 호버 상태, 활성 상태
+            </div>
+        </div>
+
+        <h3>1.2 Secondary Colors</h3>
+        <div>
+            <div class="color-box" style="background-color: #64748b;"></div>
+            <div class="color-info">
+                <strong>Gray</strong><br>
+                Hex: #64748b<br>
+                용도: 텍스트, 보조 요소
+            </div>
+        </div>
+
+        <div>
+            <div class="color-box" style="background-color: #f1f5f9;"></div>
+            <div class="color-info">
+                <strong>Light Gray</strong><br>
+                Hex: #f1f5f9<br>
+                용도: 배경, 구분선
+            </div>
+        </div>
+
+        <h3>1.3 Status Colors</h3>
+        <div>
+            <div class="color-box" style="background-color: #10b981;"></div>
+            <div class="color-info">
+                <strong>Success Green</strong><br>
+                Hex: #10b981<br>
+                용도: 성공 메시지, 완료 상태
+            </div>
+        </div>
+
+        <div>
+            <div class="color-box" style="background-color: #ef4444;"></div>
+            <div class="color-info">
+                <strong>Error Red</strong><br>
+                Hex: #ef4444<br>
+                용도: 에러 메시지, 삭제 버튼
+            </div>
+        </div>
+
+        <div>
+            <div class="color-box" style="background-color: #f59e0b;"></div>
+            <div class="color-info">
+                <strong>Warning Orange</strong><br>
+                Hex: #f59e0b<br>
+                용도: 경고 메시지, 주의 사항
+            </div>
+        </div>
+
+        <h2>2. 타이포그래피</h2>
+
+        <h3>2.1 폰트 패밀리</h3>
+        <table>
+            <thead>
+                <tr>
+                    <th>용도</th>
+                    <th>폰트</th>
+                    <th>설명</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td>본문</td>
+                    <td>System Font Stack</td>
+                    <td>-apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif</td>
+                </tr>
+                <tr>
+                    <td>코드</td>
+                    <td>Monospace</td>
+                    <td>'Courier New', monospace</td>
+                </tr>
+            </tbody>
+        </table>
+
+        <h3>2.2 폰트 크기</h3>
+        <div class="typography-sample">
+            <h1 style="font-size: 2.25rem; font-weight: 700; margin: 0;">Heading 1 (36px)</h1>
+            <p style="color: #64748b; margin: 5px 0 20px 0;">페이지 제목, 주요 섹션 제목</p>
+            
+            <h2 style="font-size: 1.875rem; font-weight: 600; margin: 0;">Heading 2 (30px)</h2>
+            <p style="color: #64748b; margin: 5px 0 20px 0;">섹션 제목</p>
+            
+            <h3 style="font-size: 1.5rem; font-weight: 600; margin: 0;">Heading 3 (24px)</h3>
+            <p style="color: #64748b; margin: 5px 0 20px 0;">서브 섹션 제목</p>
+            
+            <p style="font-size: 1rem; margin: 0;">Body Text (16px)</p>
+            <p style="color: #64748b; margin: 5px 0 20px 0;">일반 본문 텍스트</p>
+            
+            <p style="font-size: 0.875rem; margin: 0;">Small Text (14px)</p>
+            <p style="color: #64748b; margin: 5px 0 0 0;">보조 텍스트, 캡션</p>
+        </div>
+
+        <h2>3. 컴포넌트 디자인</h2>
+
+        <div class="component-box">
+            <h3>3.1 버튼</h3>
+            <table>
+                <thead>
+                    <tr>
+                        <th>타입</th>
+                        <th>스타일</th>
+                        <th>용도</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td>Primary</td>
+                        <td>배경: #2563eb, 텍스트: 흰색, 패딩: 12px 24px, 둥근 모서리: 8px</td>
+                        <td>주요 액션 (로그인, 작성, 저장)</td>
+                    </tr>
+                    <tr>
+                        <td>Secondary</td>
+                        <td>배경: 투명, 테두리: #2563eb, 텍스트: #2563eb</td>
+                        <td>보조 액션 (취소, 뒤로가기)</td>
+                    </tr>
+                    <tr>
+                        <td>Danger</td>
+                        <td>배경: #ef4444, 텍스트: 흰색</td>
+                        <td>삭제, 위험한 액션</td>
+                    </tr>
+                    <tr>
+                        <td>Ghost</td>
+                        <td>배경: 투명, 텍스트: #64748b</td>
+                        <td>덜 중요한 액션</td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+
+        <div class="component-box">
+            <h3>3.2 입력 필드</h3>
+            <ul>
+                <li><strong>높이:</strong> 44px (터치 친화적)</li>
+                <li><strong>패딩:</strong> 12px 16px</li>
+                <li><strong>테두리:</strong> 1px solid #e2e8f0</li>
+                <li><strong>둥근 모서리:</strong> 8px</li>
+                <li><strong>포커스:</strong> 테두리 색상 #2563eb, 그림자 효과</li>
+                <li><strong>에러 상태:</strong> 테두리 색상 #ef4444</li>
+            </ul>
+        </div>
+
+        <div class="component-box">
+            <h3>3.3 카드</h3>
+            <ul>
+                <li><strong>배경:</strong> 흰색</li>
+                <li><strong>그림자:</strong> 0 2px 4px rgba(0,0,0,0.1)</li>
+                <li><strong>둥근 모서리:</strong> 12px</li>
+                <li><strong>패딩:</strong> 24px</li>
+                <li><strong>용도:</strong> 게시글 카드, 프로필 카드, 모달</li>
+            </ul>
+        </div>
+
+        <div class="component-box">
+            <h3>3.4 네비게이션</h3>
+            <ul>
+                <li><strong>높이:</strong> 64px</li>
+                <li><strong>배경:</strong> 흰색</li>
+                <li><strong>그림자:</strong> 하단에 얕은 그림자</li>
+                <li><strong>고정:</strong> 상단 고정 (sticky)</li>
+                <li><strong>링크 스타일:</strong> 호버 시 색상 변경, 활성 상태 표시</li>
+            </ul>
+        </div>
+
+        <h2>4. 레이아웃</h2>
+
+        <div class="component-box">
+            <h3>4.1 그리드 시스템</h3>
+            <ul>
+                <li><strong>최대 너비:</strong> 1200px (데스크톱)</li>
+                <li><strong>패딩:</strong> 좌우 20px (모바일), 40px (데스크톱)</li>
+                <li><strong>컬럼 간격:</strong> 24px</li>
+            </ul>
+        </div>
+
+        <div class="component-box">
+            <h3>4.2 반응형 브레이크포인트</h3>
+            <table>
+                <thead>
+                    <tr>
+                        <th>디바이스</th>
+                        <th>너비</th>
+                        <th>설명</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td>모바일</td>
+                        <td>&lt; 768px</td>
+                        <td>단일 컬럼, 세로 스크롤</td>
+                    </tr>
+                    <tr>
+                        <td>태블릿</td>
+                        <td>768px - 1024px</td>
+                        <td>2컬럼 레이아웃</td>
+                    </tr>
+                    <tr>
+                        <td>데스크톱</td>
+                        <td>&gt; 1024px</td>
+                        <td>3컬럼 레이아웃, 사이드바</td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+
+        <h2>5. 간격 시스템</h2>
+        <table>
+            <thead>
+                <tr>
+                    <th>크기</th>
+                    <th>값</th>
+                    <th>용도</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td>xs</td>
+                    <td>4px</td>
+                    <td>아이콘과 텍스트 사이</td>
+                </tr>
+                <tr>
+                    <td>sm</td>
+                    <td>8px</td>
+                    <td>작은 요소 간격</td>
+                </tr>
+                <tr>
+                    <td>md</td>
+                    <td>16px</td>
+                    <td>일반 요소 간격</td>
+                </tr>
+                <tr>
+                    <td>lg</td>
+                    <td>24px</td>
+                    <td>섹션 간격</td>
+                </tr>
+                <tr>
+                    <td>xl</td>
+                    <td>32px</td>
+                    <td>큰 섹션 간격</td>
+                </tr>
+                <tr>
+                    <td>2xl</td>
+                    <td>48px</td>
+                    <td>페이지 섹션 간격</td>
+                </tr>
+            </tbody>
+        </table>
+
+        <h2>6. 애니메이션</h2>
+        <div class="component-box">
+            <h3>6.1 전환 효과</h3>
+            <ul>
+                <li><strong>기본 전환:</strong> 0.2s ease-in-out</li>
+                <li><strong>호버 효과:</strong> 색상, 크기 변화</li>
+                <li><strong>로딩:</strong> 스피너 또는 스켈레톤 UI</li>
+                <li><strong>모달:</strong> 페이드 인/아웃</li>
+            </ul>
+        </div>
+
+        <h2>7. 접근성</h2>
+        <ul>
+            <li>모든 버튼과 링크에 명확한 라벨 제공</li>
+            <li>색상 대비 비율 4.5:1 이상 유지</li>
+            <li>키보드 네비게이션 지원</li>
+            <li>포커스 인디케이터 명확히 표시</li>
+            <li>이미지에 alt 텍스트 제공</li>
+        </ul>
+    </div>
+</body>
+</html>
+

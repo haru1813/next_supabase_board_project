@@ -1,0 +1,294 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>와이어프레임 - Next.js Supabase 게시판 프로젝트</title>
+    <style>
+        body {
+            font-family: 'Malgun Gothic', sans-serif;
+            line-height: 1.6;
+            max-width: 1400px;
+            margin: 0 auto;
+            padding: 20px;
+            background-color: #f5f5f5;
+        }
+        .container {
+            background: white;
+            padding: 30px;
+            border-radius: 8px;
+            box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+        }
+        h1 {
+            color: #2563eb;
+            border-bottom: 3px solid #2563eb;
+            padding-bottom: 10px;
+        }
+        h2 {
+            color: #1e40af;
+            margin-top: 30px;
+            border-left: 4px solid #2563eb;
+            padding-left: 15px;
+        }
+        .wireframe {
+            background: #f9fafb;
+            border: 2px dashed #cbd5e1;
+            padding: 20px;
+            margin: 20px 0;
+            border-radius: 8px;
+        }
+        .wireframe-box {
+            background: white;
+            border: 1px solid #e2e8f0;
+            padding: 15px;
+            margin: 10px 0;
+            border-radius: 4px;
+        }
+        .wireframe-header {
+            background: #2563eb;
+            color: white;
+            padding: 15px;
+            border-radius: 4px;
+            margin-bottom: 15px;
+        }
+        .wireframe-nav {
+            background: #f1f5f9;
+            padding: 10px;
+            border-radius: 4px;
+            margin: 10px 0;
+        }
+        .wireframe-content {
+            min-height: 200px;
+            padding: 15px;
+        }
+        .wireframe-button {
+            display: inline-block;
+            background: #2563eb;
+            color: white;
+            padding: 8px 16px;
+            border-radius: 4px;
+            margin: 5px;
+        }
+        .wireframe-input {
+            border: 1px solid #cbd5e1;
+            padding: 8px;
+            border-radius: 4px;
+            width: 100%;
+            margin: 5px 0;
+        }
+        .wireframe-card {
+            border: 1px solid #e2e8f0;
+            padding: 15px;
+            margin: 10px 0;
+            border-radius: 4px;
+            background: white;
+        }
+        .grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 20px;
+            margin: 20px 0;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>와이어프레임</h1>
+        <p><strong>프로젝트명:</strong> Next.js Supabase 게시판 프로젝트</p>
+        <p><strong>작성일:</strong> 2026-01-20</p>
+
+        <h2>1. 메인 페이지 (게시글 목록)</h2>
+        <div class="wireframe">
+            <div class="wireframe-header">
+                <strong>헤더</strong> | 로고 | [로그인] [회원가입] / [사용자명 ▼] [로그아웃]
+            </div>
+            <div class="wireframe-nav">
+                <strong>네비게이션</strong> | 홈 | 게시판 | 내 게시글
+            </div>
+            <div class="wireframe-content">
+                <div class="wireframe-box">
+                    <strong>검색 영역</strong><br>
+                    <input type="text" class="wireframe-input" placeholder="검색어 입력...">
+                    <button class="wireframe-button">검색</button>
+                </div>
+                <div class="wireframe-box">
+                    <strong>게시글 목록</strong>
+                    <div class="wireframe-card">
+                        <strong>게시글 제목 1</strong><br>
+                        작성자: user1 | 작성일: 2026-01-20 | 조회수: 10
+                    </div>
+                    <div class="wireframe-card">
+                        <strong>게시글 제목 2</strong><br>
+                        작성자: user2 | 작성일: 2026-01-19 | 조회수: 5
+                    </div>
+                    <div class="wireframe-card">
+                        <strong>게시글 제목 3</strong><br>
+                        작성자: user3 | 작성일: 2026-01-18 | 조회수: 3
+                    </div>
+                </div>
+                <div class="wireframe-box">
+                    <strong>페이지네이션</strong><br>
+                    [이전] 1 2 3 4 5 [다음]
+                </div>
+            </div>
+            <div class="wireframe-box" style="background: #f1f5f9;">
+                <strong>푸터</strong> | © 2026 게시판 프로젝트
+            </div>
+        </div>
+
+        <h2>2. 로그인 페이지</h2>
+        <div class="wireframe">
+            <div class="wireframe-header">
+                <strong>헤더</strong> | 로고
+            </div>
+            <div class="wireframe-content" style="max-width: 400px; margin: 0 auto;">
+                <div class="wireframe-box">
+                    <h3>로그인</h3>
+                    <input type="email" class="wireframe-input" placeholder="이메일">
+                    <input type="password" class="wireframe-input" placeholder="비밀번호">
+                    <button class="wireframe-button" style="width: 100%;">로그인</button>
+                    <div style="text-align: center; margin-top: 10px;">
+                        <a href="#">비밀번호 찾기</a> | <a href="#">회원가입</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <h2>3. 회원가입 페이지</h2>
+        <div class="wireframe">
+            <div class="wireframe-header">
+                <strong>헤더</strong> | 로고
+            </div>
+            <div class="wireframe-content" style="max-width: 400px; margin: 0 auto;">
+                <div class="wireframe-box">
+                    <h3>회원가입</h3>
+                    <input type="email" class="wireframe-input" placeholder="이메일">
+                    <input type="password" class="wireframe-input" placeholder="비밀번호">
+                    <input type="password" class="wireframe-input" placeholder="비밀번호 확인">
+                    <input type="text" class="wireframe-input" placeholder="사용자명 (선택)">
+                    <button class="wireframe-button" style="width: 100%;">회원가입</button>
+                    <div style="text-align: center; margin-top: 10px;">
+                        <a href="#">로그인</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <h2>4. 게시글 작성 페이지</h2>
+        <div class="wireframe">
+            <div class="wireframe-header">
+                <strong>헤더</strong> | 로고 | [사용자명 ▼] [로그아웃]
+            </div>
+            <div class="wireframe-content">
+                <div class="wireframe-box">
+                    <h3>게시글 작성</h3>
+                    <input type="text" class="wireframe-input" placeholder="제목">
+                    <textarea class="wireframe-input" style="min-height: 300px;" placeholder="내용"></textarea>
+                    <div style="text-align: right; margin-top: 10px;">
+                        <button class="wireframe-button" style="background: #64748b;">취소</button>
+                        <button class="wireframe-button">작성</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <h2>5. 게시글 상세 페이지</h2>
+        <div class="wireframe">
+            <div class="wireframe-header">
+                <strong>헤더</strong> | 로고 | [사용자명 ▼] [로그아웃]
+            </div>
+            <div class="wireframe-content">
+                <div class="wireframe-box">
+                    <div style="border-bottom: 1px solid #e2e8f0; padding-bottom: 10px; margin-bottom: 15px;">
+                        <h2>게시글 제목</h2>
+                        <div style="color: #64748b; font-size: 0.9em;">
+                            작성자: user1 | 작성일: 2026-01-20 10:00 | 조회수: 10
+                        </div>
+                    </div>
+                    <div style="min-height: 200px; padding: 15px;">
+                        <strong>게시글 내용 영역</strong><br>
+                        게시글의 본문 내용이 여기에 표시됩니다.
+                    </div>
+                    <div style="text-align: right; margin-top: 15px;">
+                        <button class="wireframe-button" style="background: #64748b;">목록</button>
+                        <button class="wireframe-button">수정</button>
+                        <button class="wireframe-button" style="background: #ef4444;">삭제</button>
+                    </div>
+                </div>
+                <div class="wireframe-box" style="margin-top: 20px;">
+                    <h3>댓글 (3)</h3>
+                    <div class="wireframe-card">
+                        <strong>user2</strong> | 2026-01-20 11:00<br>
+                        댓글 내용 1
+                    </div>
+                    <div class="wireframe-card">
+                        <strong>user3</strong> | 2026-01-20 12:00<br>
+                        댓글 내용 2
+                    </div>
+                    <div class="wireframe-box" style="margin-top: 15px;">
+                        <textarea class="wireframe-input" style="min-height: 80px;" placeholder="댓글을 입력하세요..."></textarea>
+                        <button class="wireframe-button" style="margin-top: 10px;">댓글 작성</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <h2>6. 게시글 수정 페이지</h2>
+        <div class="wireframe">
+            <div class="wireframe-header">
+                <strong>헤더</strong> | 로고 | [사용자명 ▼] [로그아웃]
+            </div>
+            <div class="wireframe-content">
+                <div class="wireframe-box">
+                    <h3>게시글 수정</h3>
+                    <input type="text" class="wireframe-input" value="기존 제목">
+                    <textarea class="wireframe-input" style="min-height: 300px;">기존 내용</textarea>
+                    <div style="text-align: right; margin-top: 10px;">
+                        <button class="wireframe-button" style="background: #64748b;">취소</button>
+                        <button class="wireframe-button">수정</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <h2>7. 모바일 반응형 레이아웃</h2>
+        <div class="wireframe" style="max-width: 375px;">
+            <div class="wireframe-header" style="padding: 10px;">
+                <strong>☰</strong> 로고 <strong>👤</strong>
+            </div>
+            <div class="wireframe-content">
+                <div class="wireframe-card">
+                    <strong>게시글 제목 1</strong><br>
+                    <small>user1 | 2026-01-20 | 조회 10</small>
+                </div>
+                <div class="wireframe-card">
+                    <strong>게시글 제목 2</strong><br>
+                    <small>user2 | 2026-01-19 | 조회 5</small>
+                </div>
+            </div>
+            <div class="wireframe-box" style="position: fixed; bottom: 0; width: 100%; background: #2563eb; color: white; text-align: center; padding: 10px;">
+                <strong>+</strong> 글쓰기
+            </div>
+        </div>
+
+        <h2>8. 레이아웃 구조</h2>
+        <div class="wireframe">
+            <div style="display: grid; grid-template-rows: auto 1fr auto; min-height: 100vh;">
+                <div class="wireframe-header">
+                    <strong>헤더 (고정)</strong> - 높이: 64px
+                </div>
+                <div class="wireframe-content" style="flex: 1;">
+                    <strong>메인 컨텐츠 영역</strong><br>
+                    - 최대 너비: 1200px<br>
+                    - 중앙 정렬<br>
+                    - 좌우 패딩: 20px (모바일), 40px (데스크톱)
+                </div>
+                <div class="wireframe-box" style="background: #f1f5f9;">
+                    <strong>푸터</strong> - 높이: 60px
+                </div>
+            </div>
+        </div>
+    </div>
+</body>
+</html>
+
