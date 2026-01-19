@@ -13,47 +13,66 @@ export default function CommentsSection({ postId }: { postId: string }) {
 
   useEffect(() => {
     const fetchComments = async () => {
-      // 댓글 조회
-      const { data: commentsData, error: commentsError } = await supabase
-        .from('board_comments')
-        .select('*')
-        .eq('post_id', postId)
-        .order('created_at', { ascending: true })
+      try {
+        // 댓글 조회
+        const { data: commentsData, error: commentsError } = await supabase
+          .from('board_comments')
+          .select('*')
+          .eq('post_id', postId)
+          .order('created_at', { ascending: true })
 
-      if (commentsError || !commentsData) {
+        if (commentsError) {
+          console.error('댓글 조회 오류:', commentsError)
+          setComments([])
+          return
+        }
+
+        if (!commentsData || commentsData.length === 0) {
+          setComments([])
+          return
+        }
+
+        // 프로필 정보 조회
+        const userIds = [...new Set(commentsData.map((comment) => comment.user_id))]
+        if (userIds.length > 0) {
+          const { data: profilesData, error: profilesError } = await supabase
+            .from('profiles')
+            .select('id, username')
+            .in('id', userIds)
+
+          if (profilesError) {
+            console.warn('프로필 조회 오류:', profilesError)
+          }
+
+          // 댓글과 프로필 정보 결합
+          const commentsWithProfiles = commentsData.map((comment) => ({
+            ...comment,
+            profiles: profilesData?.find((profile) => profile.id === comment.user_id) || null,
+          }))
+
+          setComments(commentsWithProfiles)
+        } else {
+          setComments(commentsData)
+        }
+      } catch (error) {
+        console.error('댓글 로드 오류:', error)
         setComments([])
-        return
       }
+    }
 
-      // 프로필 정보 조회
-      const userIds = [...new Set(commentsData.map((comment) => comment.user_id))]
-      if (userIds.length > 0) {
-        const { data: profilesData } = await supabase
-          .from('profiles')
-          .select('id, username')
-          .in('id', userIds)
-
-        // 댓글과 프로필 정보 결합
-        const commentsWithProfiles = commentsData.map((comment) => ({
-          ...comment,
-          profiles: profilesData?.find((profile) => profile.id === comment.user_id) || null,
-        }))
-
-        setComments(commentsWithProfiles)
-      } else {
-        setComments(commentsData)
+    const getUser = async () => {
+      try {
+        const {
+          data: { user },
+        } = await supabase.auth.getUser()
+        setUser(user)
+      } catch (error) {
+        console.warn('사용자 정보 가져오기 실패:', error)
+        setUser(null)
       }
     }
 
     fetchComments()
-
-    const getUser = async () => {
-      const {
-        data: { user },
-      } = await supabase.auth.getUser()
-      setUser(user)
-    }
-
     getUser()
   }, [postId, supabase])
 

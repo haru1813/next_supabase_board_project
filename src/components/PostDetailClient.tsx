@@ -23,6 +23,16 @@ export default function PostDetailClient({ postId }: { postId: string }) {
       }
 
       try {
+        // 환경 변수 확인
+        const supabaseUrl = process.env.NEXT_PUBLIC_SUPABASE_URL
+        const supabaseAnonKey = process.env.NEXT_PUBLIC_SUPABASE_ANON_KEY
+
+        if (!supabaseUrl || !supabaseAnonKey) {
+          setError('Supabase 환경 변수가 설정되지 않았습니다.')
+          setLoading(false)
+          return
+        }
+
         // 게시글 조회
         const { data: postData, error: postError } = await supabase
           .from('board_posts')
@@ -30,7 +40,11 @@ export default function PostDetailClient({ postId }: { postId: string }) {
           .eq('id', postId)
           .single()
 
-        if (postError) throw postError
+        if (postError) {
+          console.error('게시글 조회 오류:', postError)
+          throw postError
+        }
+        
         if (!postData) {
           setError('게시글을 찾을 수 없습니다.')
           setLoading(false)
@@ -52,19 +66,29 @@ export default function PostDetailClient({ postId }: { postId: string }) {
 
         setPost(postWithProfile)
 
-        // 조회수 증가
-        await supabase
-          .from('board_posts')
-          .update({ views: postData.views + 1 })
-          .eq('id', postId)
+        // 조회수 증가 (에러가 나도 게시글은 표시)
+        try {
+          await supabase
+            .from('board_posts')
+            .update({ views: postData.views + 1 })
+            .eq('id', postId)
+        } catch (viewError) {
+          console.warn('조회수 증가 실패:', viewError)
+        }
 
         // 사용자 정보 가져오기
-        const {
-          data: { user },
-        } = await supabase.auth.getUser()
-        setUser(user)
+        try {
+          const {
+            data: { user },
+          } = await supabase.auth.getUser()
+          setUser(user)
+        } catch (authError) {
+          console.warn('사용자 정보 가져오기 실패:', authError)
+          setUser(null)
+        }
       } catch (err: any) {
-        setError(err.message)
+        console.error('게시글 로드 오류:', err)
+        setError(err.message || '게시글을 불러오는 중 오류가 발생했습니다.')
       } finally {
         setLoading(false)
       }
