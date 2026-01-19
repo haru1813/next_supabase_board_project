@@ -39,7 +39,8 @@ export async function generateStaticParams() {
   }
 }
 
-export default function EditPostPage({ params }: { params: { id: string } }) {
-  return <EditPostClient postId={params.id} />
+export default async function EditPostPage({ params }: { params: Promise<{ id: string }> }) {
+  const { id } = await params
+  return <EditPostClient postId={id} />
 }
 
